@@ -7,8 +7,25 @@
 </head>
 <body>
   <h1>Extension Options</h1>
+  
   <label for="buttonText">Button Text:</label>
   <input type="text" id="buttonText" placeholder="Enter button text">
+
+  <br><br>
+
+  <label for="placement">Button Placement:</label>
+  <select id="placement">
+    <option value="append">Append</option>
+    <option value="prepend">Prepend</option>
+  </select>
+
+  <br><br>
+
+  <label for="parentSelector">Parent Element Selector:</label>
+  <input type="text" id="parentSelector" placeholder="Enter CSS selector (optional)">
+
+  <br><br>
+
   <button id="save">Save</button>
 
   <script src="options.js"></script>
