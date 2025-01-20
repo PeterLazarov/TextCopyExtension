@@ -1,9 +1,10 @@
 chrome.storage.sync.get(
-  ["buttonText", "placement", "parentSelector"],
+  ["buttonText", "placement", "parentSelector", "contentSelector"],
   (data) => {
     const buttonText = data.buttonText || "Click Me";
     const placement = data.placement || "append"; // Default to append
     const parentSelector = data.parentSelector || "body"; // Default to body
+    const contentSelector = data.contentSelector || ""; // Default to empty if not set
 
     // Create the button
     const button = document.createElement("button");
@@ -11,23 +12,29 @@ chrome.storage.sync.get(
     button.style.position = "relative"; // Use relative for non-body placement
     button.style.zIndex = "1000";
 
-    // Add functionality
+    // Add functionality to copy content on button click
     button.addEventListener("click", () => {
-      alert(`${buttonText} clicked!`);
+      if (contentSelector) {
+        const contentElement = document.querySelector(contentSelector);
+        if (contentElement) {
+          const content = contentElement.textContent;
+          console.log({ content });
+          navigator.clipboard.writeText(content);
+        }
+      }
     });
 
-    // Find the parent element
-    const parent = document.querySelector(parentSelector);
+    // Find the parent element and append or prepend the button
+    const parent = document.querySelector(parentSelector) || document.body;
 
     if (parent) {
-      // Add button based on placement
       if (placement === "prepend") {
         parent.prepend(button);
       } else {
         parent.appendChild(button);
       }
     } else {
-      document.body.appendChild(button);
+      console.error(`Parent element not found for selector: ${parentSelector}`);
     }
   }
 );
