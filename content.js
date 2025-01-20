@@ -9,8 +9,8 @@ chrome.storage.sync.get(
     // Create the button
     const button = document.createElement("button");
     button.textContent = buttonText;
-    button.style.position = "relative"; // Use relative for non-body placement
     button.style.zIndex = "1000";
+    button.style.backgroundColor = "#2E294E";
 
     // Add functionality to copy content on button click
     button.addEventListener("click", () => {
