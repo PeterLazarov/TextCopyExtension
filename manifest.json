@@ -3,12 +3,13 @@
   "name": "Text Copy",
   "version": "1.0",
   "description": "Copy texts without friction",
-  "permissions": ["activeTab"],
+  "permissions": ["storage", "activeTab"],
   "host_permissions": ["<all_urls>"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "options_page": "options.html"
 }
